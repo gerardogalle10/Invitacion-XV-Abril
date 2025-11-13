@@ -702,7 +702,7 @@ return (
               >
                 <div className="absolute inset-0 bg-black opacity-5" />
                 <img
-                  src="https://i.postimg.cc/Wzyjryww/MIS-XV-ANOS-098-copia.jpg"
+                  src="https://i.postimg.cc/h49w3MNf/MIS-XV-ANOS-024.jpg"
                   className="w-full h-full object-cover"
                   style={{ filter: "brightness(1.1) contrast(1.05)" }}
                   alt="Foto principal XV"
@@ -1020,7 +1020,7 @@ return (
                         He aprendido que estar con
                         quienes quiero es suficiente
                         para ser feliz...
-                        
+
                         ¡Celebra con nosotros este día tan maravilloso!
                       </span>
                     </motion.h1>
