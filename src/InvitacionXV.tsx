@@ -682,7 +682,7 @@ return (
             <header className="pointer-events-none absolute top-0 left-0 right-0 z-30 pt-24 pb-8 text-center">
               <div className="max-w-md mx-auto px-4">
                 <motion.h1
-                  className="text-4xl mb-2 text-white"
+                  className="text-5xl md:text-6xl mb-2 text-white"
                   style={{ fontFamily: '"Dancing Script", cursive' }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
