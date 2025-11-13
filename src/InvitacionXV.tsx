@@ -6,7 +6,7 @@ const EVENT_DATE = new Date("2025-12-19T18:00:00"); // Viernes 19 de Diciembre 2
 const GALLERY_IMAGES = [
   "https://i.postimg.cc/8c0XtQ3Z/IMG-20251110-WA0052.jpg",
   "https://i.postimg.cc/nrPS0b5W/IMG-20251110-WA0053.jpg",
-  "https://i.postimg.cc/SRv1DF5t/IMG-20251110-WA0054.jpg",
+  "https://i.postimg.cc/0y8jTMbT/Whats-App-Image-2025-11-13-at-14-50-29-5ae6e2d6.jpg",
   "https://i.postimg.cc/597rxL0V/IMG-20251110-WA0055.jpg",
   "https://i.postimg.cc/wMG408PP/Whats-App-Image-2025-11-10-at-13-28-30-a502cbab.jpg",
 ];
