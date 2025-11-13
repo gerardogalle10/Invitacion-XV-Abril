@@ -201,6 +201,21 @@ useEffect(() => {
     }
   };  
 
+// 🔐 Invitado personalizado desde parámetros del link
+const [guestName, setGuestName] = useState<string | null>(null);
+const [maxPasses, setMaxPasses] = useState<number>(6); // por defecto 6
+
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+
+  const nameParam = params.get("invitado");
+  const passesParam = params.get("pases");
+
+  if (nameParam) setGuestName(decodeURIComponent(nameParam));
+  if (passesParam) setMaxPasses(parseInt(passesParam));
+}, []);
+
+
 return (
   <div className="relative w-full overflow-x-hidden bg-neutral-500">
     {/* 🎵 Elemento de audio oculto */}
@@ -1796,12 +1811,14 @@ return (
                     </label>
                     <input
                       type="text"
-                      id="nombre"
-                      name="nombre"
-                      className="w-full text-black rounded-md border border-gray-300 px-3 py-2 focus:border-[#9E8B8E] focus:outline-none focus:ring-1 focus:ring-[#9E8B8E]"
-                      placeholder="Juan Pérez"
-                      required
-                    />
+                       id="nombre"
+                       name="nombre"
+                       value={guestName ?? ""}
+                       readOnly={!!guestName}
+                        placeholder="Escribe tu nombre"
+                       className="w-full text-black rounded-md border border-gray-300 px-3 py-2 bg-gray-100"
+                        required
+                      />
                   </motion.div>
 
                   <motion.div
@@ -1855,17 +1872,17 @@ return (
                       name="personas"
                       className="w-full text-black rounded-md border border-gray-300 px-3 py-2 focus:border-[#9E8B8E] focus:outline-none focus:ring-1 focus:ring-[#9E8B8E]"
                       required
-                    >
-                      <option value="">
-                        Selecciona el número de personas
-                      </option>
-                      <option value="1">1 persona</option>
-                      <option value="2">2 personas</option>
-                      <option value="3">3 personas</option>
-                      <option value="4">4 personas</option>
-                      <option value="5">5 personas</option>
-                      <option value="6">6 personas</option>
-                    </select>
+                       >
+                       <option value="">
+                         Selecciona el número de personas
+                         </option>
+
+                        {Array.from({ length: maxPasses }, (_, i) => i + 1).map((num) => (
+                       <option key={num} value={num}>
+                        {num} persona{num > 1 ? "s" : ""}
+                        </option>
+                            ))}
+                      </select>
                   </motion.div>
 
                   <motion.div
