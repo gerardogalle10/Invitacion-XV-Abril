@@ -6,9 +6,9 @@ const EVENT_DATE = new Date("2025-12-19T18:00:00"); // Viernes 19 de Diciembre 2
 const GALLERY_IMAGES = [
   "https://i.postimg.cc/8c0XtQ3Z/IMG-20251110-WA0052.jpg",
   "https://i.postimg.cc/nrPS0b5W/IMG-20251110-WA0053.jpg",
-  "https://i.postimg.cc/0y8jTMbT/Whats-App-Image-2025-11-13-at-14-50-29-5ae6e2d6.jpg",
   "https://i.postimg.cc/597rxL0V/IMG-20251110-WA0055.jpg",
   "https://i.postimg.cc/wMG408PP/Whats-App-Image-2025-11-10-at-13-28-30-a502cbab.jpg",
+  "https://i.postimg.cc/0y8jTMbT/Whats-App-Image-2025-11-13-at-14-50-29-5ae6e2d6.jpg",
 ];
 
 interface Countdown {
@@ -59,20 +59,6 @@ const InvitacionXV: React.FC = () => {
       prev === 0 ? GALLERY_IMAGES.length - 1 : prev - 1
     );
   };
-
-  // ---- Audio setup ----
-  useEffect(() => {
-    audioRef.current = new Audio(AUDIO_URL);
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.6;
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
 
   // --- Auto-cambio de imagen cada 5 segundos (1→5→1 tipo ping-pong) ---
 useEffect(() => {
@@ -194,9 +180,36 @@ useEffect(() => {
   };
 
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
+  
+  const handleOpenInvitation = () => {
+    // 1. Abrir la invitación (quitar el sobre)
+    setIsInvitationOpen(true);
+  
+    // 2. Intentar reproducir la música
+    if (audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true); // actualizamos el estado para que el botón cambie a "pausa"
+        })
+        .catch((err) => {
+          console.log(
+            "El navegador bloqueó la reproducción automática hasta nueva interacción:",
+            err
+          );
+        });
+    }
+  };  
 
 return (
   <div className="relative w-full overflow-x-hidden bg-neutral-500">
+    {/* 🎵 Elemento de audio oculto */}
+    <audio
+      ref={audioRef}
+      src={AUDIO_URL}
+      loop
+      preload="auto"
+    />
     {/* SOBRE INICIAL / PORTADA */}
     <AnimatePresence>
       {!isInvitationOpen && (
@@ -257,7 +270,7 @@ return (
             {/* Botón para “abrir” */}
             <motion.button
               type="button"
-              onClick={() => setIsInvitationOpen(true)}
+              onClick={handleOpenInvitation}
               className="mt-8 w-full rounded-full bg-[#9E8B8E] px-6 py-3 text-sm text-white shadow-md hover:bg-[#8A7477] focus:outline-none focus:ring-2 focus:ring-[#9E8B8E] focus:ring-offset-2"
               style={{ fontFamily: '"Dancing Script", cursive' }}
               whileHover={{ scale: 1.03 }}
