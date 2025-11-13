@@ -728,8 +728,11 @@ return (
               style={{ fontFamily: '"Dancing Script", cursive' }}
             >
               <span>
-                ¡Ha llegado el momento de soñar! Con mucha alegría, te invito a
-                celebrar mis XV años, un día lleno de magia, amor y felicidad
+                Hay momentos en la vida
+                que imaginamos, soñamos
+                y esperamos
+
+                Uno de esos momentos a llegado...
               </span>
             </h1>
           </motion.div>
@@ -1014,6 +1017,10 @@ return (
                       transition={{ delay: 0.2, duration: 0.6 }}
                     >
                       <span>
+                        He aprendido que estar con
+                        quienes quiero es suficiente
+                        para ser feliz...
+                        
                         ¡Celebra con nosotros este día tan maravilloso!
                       </span>
                     </motion.h1>
