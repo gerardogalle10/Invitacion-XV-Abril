@@ -1739,15 +1739,16 @@ return (
                     </p>
                   </div>
 
-                  <motion.div
-                    className="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-white/80 px-3 py-1 text-sm font-light text-gray-800"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.7 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  >
-                    {currentSlide + 1} / {GALLERY_IMAGES.length}
-                  </motion.div>
+                  <div className="w-full flex justify-center mt-4">
+                    <motion.div
+                      className="rounded-full bg-white/80 px-4 py-1 text-sm font-light text-gray-800 shadow"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      >
+                       {currentSlide + 1} / {GALLERY_IMAGES.length}
+                    </motion.div>
+                   </div>
                 </div>
               </motion.div>
 
