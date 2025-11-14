@@ -974,43 +974,97 @@ return (
           </motion.div>
         </section>
 
-        {/* Sección mensaje + padres */}
-<section
-  className="relative w-full text-center py-20"
-  style={{
-    fontFamily: '"Dancing Script", cursive',
-  }}
->
-  {/* FONDO CURVO ROSA */}
-  <div className="relative w-full">
-    <div
-      className="w-full h-[380px] rounded-b-[50%]"
-      style={{ backgroundColor: "#f5c9d4" }}
-    ></div>
+        {/* PADRES Y PADRINOS (ANIMADO) */}
+<section id="padres">
+  <motion.div
+    className="relative min-h-screen w-full overflow-hidden"
+    style={{ backgroundColor: "rgb(217, 202, 254)" }}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.25 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+  >
+    <div className="relative w-full">
+      {/* bloque rosa superior redondeado */}
+      <motion.div
+        className="relative rounded-b-[50%]"
+        style={{
+          backgroundColor: "rgb(249, 211, 224)",
+          borderRadius: "0 0 50% 50%",
+        }}
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="px-6 pt-20 pb-32 text-center flex flex-col items-center">
+          <motion.div
+            className="mx-auto max-w-xl space-y-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              delay: 0.15,
+              duration: 0.7,
+              ease: "easeOut",
+            }}
+          >
+            {/* Frase */}
+            <motion.h1
+              className="text-2xl sm:text-3xl md:text-4xl leading-relaxed"
+              style={{ fontFamily: '"Dancing Script", cursive' }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              He aprendido que estar con quienes quiero es suficiente para ser
+              feliz… ¡Celebra con nosotros este día tan maravilloso!
+            </motion.h1>
 
-    {/* TEXTO PRINCIPAL — MÁS GRANDE Y OCUPANDO TODO EL FONDO ROSA */}
-    <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[90%] max-w-3xl px-4">
-      <p className="text-xl sm:text-2xl md:text-3xl leading-relaxed text-gray-700">
-        He aprendido que estar con quienes quiero es suficiente para ser feliz…  
-        ¡Celebra con nosotros este día tan maravilloso!
-      </p>
+            {/* Texto “Mis Padres” */}
+            <motion.p
+              className="text-sm sm:text-base tracking-[0.25em] uppercase text-gray-700"
+              style={{ fontFamily: '"Dancing Script", cursive' }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.35, duration: 0.5 }}
+            >
+              Mis Padres
+            </motion.p>
+
+            {/* Nombres de los padres */}
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <p
+                className="text-xl sm:text-2xl"
+                style={{ fontFamily: '"Dancing Script", cursive' }}
+              >
+                Yessika Yazmín Gallegos Sifuentes
+              </p>
+              <p
+                className="text-xl sm:text-2xl"
+                style={{ fontFamily: '"Dancing Script", cursive' }}
+              >
+                Jesús Gerardo Bañuelos Beltrán
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* espacio morado inferior */}
+      <div className="h-64" />
     </div>
-  </div>
-
-  {/* SECCIÓN MORADA – MIS PADRES */}
-  <div className="pt-16 pb-28 bg-[#d7ccff] -mt-10">
-    <p className="uppercase tracking-widest text-sm sm:text-base text-gray-600 mb-6">
-      Mis Padres
-    </p>
-
-    <p className="text-lg sm:text-xl md:text-2xl text-gray-700">
-      Yessika Yazmín Gallegos Sifuentes
-    </p>
-    <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mt-2">
-      Jesús Gerardo Bañuelos Beltrán
-    </p>
-  </div>
+  </motion.div>
 </section>
+
 
 
 
