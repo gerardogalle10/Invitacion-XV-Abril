@@ -975,106 +975,96 @@ return (
         </section>
 
         {/* PADRES Y PADRINOS (ANIMADO) */}
-        <section id="padres">
+<section id="padres">
+  <motion.div
+    className="relative min-h-screen w-full overflow-hidden"
+    style={{ backgroundColor: "rgb(217, 202, 254)" }}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.25 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+  >
+    <div className="relative w-full">
+      {/* bloque rosa superior redondeado */}
+      <motion.div
+        className="relative rounded-b-[50%]"
+        style={{
+          backgroundColor: "rgb(249, 211, 224)",
+          borderRadius: "0 0 50% 50%",
+        }}
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="px-6 pt-20 pb-32 text-center flex flex-col items-center">
           <motion.div
-            className="relative min-h-screen w-full overflow-hidden"
-            style={{ backgroundColor: "rgb(217, 202, 254)" }}
-            initial={{ opacity: 0, y: 40 }}
+            className="mx-auto max-w-xl space-y-10"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              delay: 0.15,
+              duration: 0.7,
+              ease: "easeOut",
+            }}
           >
-            <div className="relative w-full">
-              <motion.div
-                className="relative rounded-b-[50%]"
-                style={{
-                  backgroundColor: "rgb(249, 211, 224)",
-                  borderRadius: "0 0 50% 50%",
-                }}
-                initial={{ opacity: 0, y: -30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+            {/* Frase */}
+            <motion.h1
+              className="text-2xl sm:text-3xl md:text-4xl leading-relaxed"
+              style={{ fontFamily: '"Dancing Script", cursive' }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              He aprendido que estar con quienes quiero es suficiente para ser
+              feliz… ¡Celebra con nosotros este día tan maravilloso!
+            </motion.h1>
+
+            {/* Texto “Mis Padres” */}
+            <motion.p
+              className="text-sm sm:text-base tracking-[0.25em] uppercase text-gray-700"
+              style={{ fontFamily: '"Dancing Script", cursive' }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.35, duration: 0.5 }}
+            >
+              Mis Padres
+            </motion.p>
+
+            {/* Nombres de los padres */}
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <p
+                className="text-xl sm:text-2xl"
+                style={{ fontFamily: '"Dancing Script", cursive' }}
               >
-                <div className="px-8 pt-16 pb-32 text-center">
-                  <motion.div
-                    className="mx-auto max-w-sm space-y-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{
-                      delay: 0.15,
-                      duration: 0.7,
-                      ease: "easeOut",
-                    }}
-                  >
-                    <motion.h1
-                      className="font-serif text-2xl leading-relaxed"
-                      style={{ fontFamily: '"Dancing Script", cursive' }}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ delay: 0.2, duration: 0.6 }}
-                    >
-                      <span>
-                        He aprendido que estar con
-                        quienes quiero es suficiente
-                        para ser feliz...
-
-                        ¡Celebra con nosotros este día tan maravilloso!
-                      </span>
-                    </motion.h1>
-
-                    <motion.div
-                      className="flex flex-col justify-center items-center"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ delay: 0.3, duration: 0.6 }}
-                    >
-                      <div className="space-y-2">
-                        <motion.p
-                          className="text-sm font-light"
-                          style={{ fontFamily: '"Dancing Script", cursive' }}
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
-                          transition={{ delay: 0.35, duration: 0.5 }}
-                        >
-                          <span>Mis Padres</span>
-                        </motion.p>
-
-                        <motion.p
-                          className="font-serif text-xl"
-                          style={{ fontFamily: '"Dancing Script", cursive' }}
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
-                          transition={{ delay: 0.4, duration: 0.5 }}
-                        >
-                          <span>Yessika Yazmín Gallegos Sifuentes</span>
-                        </motion.p>
-
-                        <motion.p
-                          className="font-serif text-xl"
-                          style={{ fontFamily: '"Dancing Script", cursive' }}
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
-                          transition={{ delay: 0.45, duration: 0.5 }}
-                        >
-                          <span>Jesús Gerardo Bañuelos Beltrán</span>
-                        </motion.p>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              <div className="h-64" />
-            </div>
+                Yessika Yazmín Gallegos Sifuentes
+              </p>
+              <p
+                className="text-xl sm:text-2xl"
+                style={{ fontFamily: '"Dancing Script", cursive' }}
+              >
+                Jesús Gerardo Bañuelos Beltrán
+              </p>
+            </motion.div>
           </motion.div>
-        </section>
+        </div>
+      </motion.div>
+
+      {/* espacio morado inferior */}
+      <div className="h-64" />
+    </div>
+  </motion.div>
+</section>
+
 
         {/* ITINERARIO (ANIMADO) */}
         <section id="programa">
