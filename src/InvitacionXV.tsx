@@ -732,7 +732,7 @@ return (
                 que imaginamos, soñamos
                 y esperamos
 
-                Uno de esos momentos a llegado...
+                Uno de esos momentos ha llegado...
               </span>
             </h1>
           </motion.div>
