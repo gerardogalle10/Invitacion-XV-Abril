@@ -22,7 +22,7 @@ const AUDIO_URL =
   "https://github.com/gerardogalle10/audio-xv/raw/main/Nocrezcasmas.mp3";
 
 // 👉 Número de WhatsApp (sin +, sin espacios)
-// const WHATSAPP_NUMBER = "528662613760";
+const WHATSAPP_NUMBER = "528662613760";
 
 const RSVP_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbyASFH2TQS7S1y5A8idomz5FQnYk-EmucbLLyQJpVzB8l7Zjd_2_OZr_Sr_X9JqRwHp7A/exec"; // <-- pega aquí tu URL de Apps Script
