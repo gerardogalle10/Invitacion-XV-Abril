@@ -25,7 +25,7 @@ const AUDIO_URL =
 const WHATSAPP_NUMBER = "528662613760";
 
 const RSVP_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbyASFH2TQS7S1y5A8idomz5FQnYk-EmucbLLyQJpVzB8l7Zjd_2_OZr_Sr_X9JqRwHp7A/exec"; // <-- pega aquí tu URL de Apps Script
+  "https://script.google.com/macros/s/AKfycbyASFH2TQS7S1y5A8idomz5FQNyk-EmucbLLyQJPVzB817Zjd_2_0Zr_Sr_X9JqRWhp7A/exec";
 
 const InvitacionXV: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -161,21 +161,25 @@ useEffect(() => {
       await fetch(RSVP_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
+        body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
       });
   
-      alert("¡Gracias! Tu confirmación fue registrada correctamente.");
+      // Ahora enviar WhatsApp automático
+      const mensaje = `Hola, soy ${payload.nombre}. Confirmo: ${payload.asistencia}. Personas: ${payload.personas}. Comentarios: ${payload.comentarios}`;
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+  
+      window.open(url, "_blank");
+  
       form.reset();
+      alert("¡Gracias! Tu confirmación fue enviada correctamente.");
     } catch (error) {
-      console.error("Error:", error);
-      alert("Hubo un problema al enviar tu confirmación.");
+      console.error(error);
+      alert("Hubo un error al enviar tu confirmación.");
     }
   };
-  
-  
   
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
   
