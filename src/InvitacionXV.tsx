@@ -24,6 +24,9 @@ const AUDIO_URL =
 // 👉 Número de WhatsApp (sin +, sin espacios)
 const WHATSAPP_NUMBER = "528662613760";
 
+const RSVP_ENDPOINT =
+  "https://script.google.com/macros/s/XXXXXXXXXXXX/exec"; // <-- pega aquí tu URL de Apps Script
+
 const InvitacionXV: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
@@ -141,43 +144,66 @@ useEffect(() => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     const form = e.currentTarget;
     const data = new FormData(form);
-
+  
     const nombre = (data.get("nombre") as string) || "";
     const asistencia = (data.get("asistencia") as string) || "";
     const personas = (data.get("personas") as string) || "";
     const comentarios =
       (data.get("comentarios") as string) || "Sin comentarios.";
-
+  
     const asistenciaTexto =
       asistencia === "si"
         ? "Sí, asistiré"
         : asistencia === "no"
         ? "No podré asistir"
         : asistencia;
-
+  
+    // 1) Enviar a Google Sheets
+    try {
+      await fetch(RSVP_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre,
+          asistencia: asistenciaTexto,
+          personas,
+          comentarios,
+        }),
+      });
+      // Si quieres, aquí podrías validar el JSON de respuesta
+    } catch (error) {
+      console.error("Error enviando RSVP a Google Sheets:", error);
+      // opcional: avisar al usuario
+      // alert("Hubo un problema guardando tu registro, pero intentaremos enviar la confirmación por WhatsApp.");
+    }
+  
+    // 2) Armar el mensaje para WhatsApp (como ya lo tenías)
     const mensaje =
       `*Confirmación de asistencia - XV de Abril*\n\n` +
       `*Nombre:* ${nombre}\n` +
       `*¿Asistirás?:* ${asistenciaTexto}\n` +
       `*Número de personas:* ${personas}\n` +
       `*Comentarios:* ${comentarios}`;
-
+  
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       mensaje
     )}`;
-
+  
     window.open(url, "_blank");
     form.reset();
-
+  
     alert(
       "¡Gracias por confirmar tu asistencia! 💖\nSe abrirá WhatsApp para enviar la confirmación."
     );
   };
+  
 
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
   
