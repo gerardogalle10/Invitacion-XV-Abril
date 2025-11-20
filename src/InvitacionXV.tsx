@@ -25,7 +25,7 @@ const AUDIO_URL =
 const WHATSAPP_NUMBER = "528662613760";
 
 const RSVP_ENDPOINT =
-  "https://script.google.com/macros/s/XXXXXXXXXXXX/exec"; // <-- pega aquí tu URL de Apps Script
+  "https://script.google.com/macros/s/AKfycbyASFH2TQS7S1y5A8idomz5FQnYk-EmucbLLyQJpVzB8l7Zjd_2_OZr_Sr_X9JqRwHp7A/exec"; // <-- pega aquí tu URL de Apps Script
 
 const InvitacionXV: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
