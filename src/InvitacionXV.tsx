@@ -150,14 +150,19 @@ useEffect(() => {
     const form = e.currentTarget;
     const data = new FormData(form);
   
+    // 👇 Tomamos los parámetros directamente de la URL
+    const params = new URLSearchParams(window.location.search);
+    const invitadoParam = params.get("invitado") || "";
+    const pasesParam = params.get("pases");
+    const pasesMaximos = pasesParam ? Number(pasesParam) : maxPasses;
+  
     const payload = {
       nombre: data.get("nombre"),
       asistencia: data.get("asistencia"),
       personas: data.get("personas"),
       comentarios: data.get("comentarios") || "",
-      // 👇 las 2 columnas extra
-      invitadoParam: guestName || "",   // viene del parámetro ?invitado=
-      pasesMaximos: maxPasses,          // viene del parámetro ?pases=  (o 6 por defecto)
+      invitadoParam,   // ← columna "Invitado (parámetro de la URL)"
+      pasesMaximos,    // ← columna "Pases máximos"
     };
   
     try {
@@ -170,7 +175,7 @@ useEffect(() => {
         body: JSON.stringify(payload),
       });
   
-      // Enviar WhatsApp
+      // WhatsApp
       const mensaje = `Hola, soy ${payload.nombre}. Confirmo: ${payload.asistencia}. Personas: ${payload.personas}. Comentarios: ${payload.comentarios}`;
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
         mensaje
@@ -184,7 +189,8 @@ useEffect(() => {
       console.error(error);
       alert("Hubo un error al enviar tu confirmación.");
     }
-  };  
+  };
+  
   
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
   
