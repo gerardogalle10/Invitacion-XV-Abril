@@ -150,19 +150,27 @@ useEffect(() => {
     const form = e.currentTarget;
     const data = new FormData(form);
   
-    // 👇 Tomamos los parámetros directamente de la URL
-    const params = new URLSearchParams(window.location.search);
-    const invitadoParam = params.get("invitado") || "";
-    const pasesParam = params.get("pases");
-    const pasesMaximos = pasesParam ? Number(pasesParam) : maxPasses;
+    // Aquí usamos directamente lo que YA tienes en estado:
+    const nombre =
+      guestName && guestName.trim().length > 0
+        ? guestName
+        : (data.get("nombre") as string);
+  
+    const asistencia = data.get("asistencia");
+    const personas = data.get("personas");
+    const comentarios = (data.get("comentarios") as string) || "";
+  
+    // Lo que quieres en las dos últimas columnas:
+    const invitadoParam = guestName || "";   // Columna "Invitado (parámetro de la URL)"
+    const pasesMaximos = maxPasses;          // Columna "Pases máximos"
   
     const payload = {
-      nombre: data.get("nombre"),
-      asistencia: data.get("asistencia"),
-      personas: data.get("personas"),
-      comentarios: data.get("comentarios") || "",
-      invitadoParam,   // ← columna "Invitado (parámetro de la URL)"
-      pasesMaximos,    // ← columna "Pases máximos"
+      nombre,
+      asistencia,
+      personas,
+      comentarios,
+      invitadoParam,
+      pasesMaximos,
     };
   
     try {
@@ -176,7 +184,7 @@ useEffect(() => {
       });
   
       // WhatsApp
-      const mensaje = `Hola, soy ${payload.nombre}. Confirmo: ${payload.asistencia}. Personas: ${payload.personas}. Comentarios: ${payload.comentarios}`;
+      const mensaje = `Hola, soy ${nombre}. Confirmo: ${asistencia}. Personas: ${personas}. Comentarios: ${comentarios}`;
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
         mensaje
       )}`;
@@ -189,7 +197,7 @@ useEffect(() => {
       console.error(error);
       alert("Hubo un error al enviar tu confirmación.");
     }
-  };
+  };  
   
   
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
