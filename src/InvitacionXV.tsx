@@ -183,8 +183,7 @@ useEffect(() => {
         body: JSON.stringify(payload),
       });
   
-      // 🔥 WhatsApp con formato bonito
-      // 🔥 WhatsApp con formato bonito + negritas
+      // 🔥 WhatsApp 
 const asistenciaTexto =
 asistencia === "si"
   ? "Sí, asistiré"
