@@ -25,7 +25,7 @@ const AUDIO_URL =
 const WHATSAPP_NUMBER = "528662613760";
 
 const RSVP_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbyASFH2TQS7S1y5A8idomz5FQNyk-EmucbLLyQJPVzB817Zjd_2_0Zr_Sr_X9JqRWhp7A/exec";
+  "https://script.google.com/macros/library/d/1fl6rk_cNF5NqcXJ4ObjlrlNyjJdakVGmL7FSdwxRA8aP7BD5MyGRgqXz/1";
 
 const InvitacionXV: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
