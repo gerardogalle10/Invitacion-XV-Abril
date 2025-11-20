@@ -184,25 +184,27 @@ useEffect(() => {
       });
   
       // 🔥 WhatsApp con formato bonito
-      const asistenciaTexto =
-        asistencia === "si"
-          ? "Sí, asistiré"
-          : asistencia === "no"
-          ? "No podré asistir"
-          : asistencia;
-  
-      const mensaje = [
-        "Confirmación de asistencia - XV de Abril",
-        "",
-        `Nombre: ${nombre}`,
-        `¿Asistirás?: ${asistenciaTexto}`,
-        `Número de personas: ${personas}`,
-        `Comentarios: ${comentarios || "Sin comentarios"}`,
-      ].join("\n");
-  
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-        mensaje
-      )}`;
+      // 🔥 WhatsApp con formato bonito + negritas
+const asistenciaTexto =
+asistencia === "si"
+  ? "Sí, asistiré"
+  : asistencia === "no"
+  ? "No podré asistir"
+  : asistencia;
+
+const mensaje = [
+"*Confirmación de asistencia - XV de Abril*",
+"",
+`*Nombre:* ${nombre}`,
+`*¿Asistirás?:* ${asistenciaTexto}`,
+`*Número de personas:* ${personas}`,
+`*Comentarios:* ${comentarios || "Sin comentarios"}`,
+].join("\n");
+
+const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+mensaje
+)}`;
+
   
       window.open(url, "_blank");
   
