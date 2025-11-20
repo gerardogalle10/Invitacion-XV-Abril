@@ -150,19 +150,19 @@ useEffect(() => {
     const form = e.currentTarget;
     const data = new FormData(form);
   
-    // Aquí usamos directamente lo que YA tienes en estado:
+    // Nombre desde parámetro o input
     const nombre =
       guestName && guestName.trim().length > 0
         ? guestName
         : (data.get("nombre") as string);
   
-    const asistencia = data.get("asistencia");
-    const personas = data.get("personas");
+    const asistencia = data.get("asistencia") as string;
+    const personas = data.get("personas") as string;
     const comentarios = (data.get("comentarios") as string) || "";
   
-    // Lo que quieres en las dos últimas columnas:
-    const invitadoParam = guestName || "";   // Columna "Invitado (parámetro de la URL)"
-    const pasesMaximos = maxPasses;          // Columna "Pases máximos"
+    // Columnas extra
+    const invitadoParam = guestName || "";
+    const pasesMaximos = maxPasses;
   
     const payload = {
       nombre,
@@ -183,8 +183,23 @@ useEffect(() => {
         body: JSON.stringify(payload),
       });
   
-      // WhatsApp
-      const mensaje = `Hola, soy ${nombre}. Confirmo: ${asistencia}. Personas: ${personas}. Comentarios: ${comentarios}`;
+      // 🔥 WhatsApp con formato bonito
+      const asistenciaTexto =
+        asistencia === "si"
+          ? "Sí, asistiré"
+          : asistencia === "no"
+          ? "No podré asistir"
+          : asistencia;
+  
+      const mensaje = [
+        "Confirmación de asistencia - XV de Abril",
+        "",
+        `Nombre: ${nombre}`,
+        `¿Asistirás?: ${asistenciaTexto}`,
+        `Número de personas: ${personas}`,
+        `Comentarios: ${comentarios || "Sin comentarios"}`,
+      ].join("\n");
+  
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
         mensaje
       )}`;
@@ -192,12 +207,13 @@ useEffect(() => {
       window.open(url, "_blank");
   
       form.reset();
-      alert("¡Gracias! Tu confirmación fue enviada correctamente.");
+      alert("¡Gracias! Tu confirmación fue enviada correctamente!");
     } catch (error) {
       console.error(error);
       alert("Hubo un error al enviar tu confirmación.");
     }
-  };  
+  };
+  
   
   
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
