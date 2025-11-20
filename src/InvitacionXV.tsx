@@ -150,22 +150,17 @@ useEffect(() => {
     const form = e.currentTarget;
     const data = new FormData(form);
   
-    // Tomar invitado desde URL (si existe)
-    const params = new URLSearchParams(window.location.search);
-    const invitadoParam = params.get("invitado") || "";
-    const pasesMaximos = params.get("pases") || "";
-  
     const payload = {
       nombre: data.get("nombre"),
       asistencia: data.get("asistencia"),
       personas: data.get("personas"),
       comentarios: data.get("comentarios") || "",
-      invitadoParam,   // esto se guarda en Google Sheets (columna F)
-      pasesMaximos     // esto se guarda en Google Sheets (columna G)
+      // 👇 las 2 columnas extra
+      invitadoParam: guestName || "",   // viene del parámetro ?invitado=
+      pasesMaximos: maxPasses,          // viene del parámetro ?pases=  (o 6 por defecto)
     };
   
     try {
-      // Enviar a Google Sheets
       await fetch(RSVP_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
@@ -177,18 +172,19 @@ useEffect(() => {
   
       // Enviar WhatsApp
       const mensaje = `Hola, soy ${payload.nombre}. Confirmo: ${payload.asistencia}. Personas: ${payload.personas}. Comentarios: ${payload.comentarios}`;
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        mensaje
+      )}`;
+  
       window.open(url, "_blank");
   
-      alert("¡Gracias! Tu confirmación fue registrada y enviada correctamente.");
       form.reset();
-  
+      alert("¡Gracias! Tu confirmación fue enviada correctamente.");
     } catch (error) {
-      console.error("Error:", error);
-      alert("Hubo un problema al enviar tu confirmación.");
+      console.error(error);
+      alert("Hubo un error al enviar tu confirmación.");
     }
-  };
-  
+  };  
   
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
   
