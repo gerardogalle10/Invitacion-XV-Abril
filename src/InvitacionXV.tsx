@@ -193,7 +193,7 @@ asistencia === "si"
   : asistencia;
 
 const mensaje = [
-"*Confirmación de asistencia - XV de Abril*",
+"Confirmación de asistencia - XV de Abril",
 "",
 `*Nombre:* ${nombre}`,
 `*¿Asistirás?:* ${asistenciaTexto}`,
