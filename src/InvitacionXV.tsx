@@ -155,10 +155,12 @@ useEffect(() => {
       asistencia: data.get("asistencia"),
       personas: data.get("personas"),
       comentarios: data.get("comentarios") || "",
+      invitadoParam: guestName ?? "",
+      pasesMaximos: maxPasses,
     };
   
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbyASFH2TQS7S1y5A8idomz5FQnYk-EmucbLLyQJpVzB8l7Zjd_2_OZr_Sr_X9JqRwHp7A/exec", {
+      await fetch(RSVP_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -173,7 +175,8 @@ useEffect(() => {
       console.error("Error:", error);
       alert("Hubo un problema al enviar tu confirmación.");
     }
-  };  
+  };
+  
   
   const formatNumber = (n: number) => n.toString().padStart(2, "0");
   
